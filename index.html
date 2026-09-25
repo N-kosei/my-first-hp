@@ -1,18 +1,310 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
-    <title>私のホームページ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>In the 掘～る</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            color: #3b2a1a;
+
+            /* 土っぽい背景 */
+            background:
+                radial-gradient(circle at 20% 20%, #8b6b4a 0 3%, transparent 4%),
+                radial-gradient(circle at 70% 40%, #6e5138 0 2%, transparent 3%),
+                radial-gradient(circle at 40% 80%, #a17b52 0 3%, transparent 4%),
+                linear-gradient(135deg, #5c432e, #9a744d, #60462f);
+
+            background-size: 180px 180px;
+            min-height: 100vh;
+        }
+
+        /* ページ全体 */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #f3e4c8;
+            min-height: 100vh;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ヘッダー */
+        header {
+            text-align: center;
+            padding: 40px 20px 25px;
+
+            background:
+                linear-gradient(
+                    rgba(70, 45, 25, 0.85),
+                    rgba(70, 45, 25, 0.85)
+                );
+
+            color: #fff4d6;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            letter-spacing: 3px;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            color: #e7c98e;
+        }
+
+        /* タブ */
+        .tabs {
+            display: flex;
+            background: #382617;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 16px 5px;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-right: 1px solid #725438;
+        }
+
+        .tab:hover {
+            background: #6c4b2d;
+        }
+
+        .tab.active {
+            background: #c28a3c;
+            color: #fff8e8;
+        }
+
+        /* メイン */
+        main {
+            padding: 35px 25px 50px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            border-left: 8px solid #b87825;
+            padding-left: 12px;
+            color: #5a351b;
+        }
+
+        /* 動画 */
+        .video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #2c2118;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #d7c09b;
+            border: 5px solid #68482c;
+            border-radius: 10px;
+        }
+
+        .video p {
+            text-align: center;
+        }
+
+        .video-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* ゲーム紹介 */
+        .description {
+            background: #fff8e9;
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #c9a56c;
+            line-height: 1.8;
+        }
+
+        /* ランキング */
+        .ranking-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            margin: 8px 0;
+            background: #fff8e9;
+            border-radius: 8px;
+            border: 1px solid #c9a56c;
+        }
+
+        .rank {
+            font-weight: bold;
+        }
+
+        /* 整理券 */
+        .waiting {
+            background: #fff8e9;
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #c9a56c;
+            text-align: center;
+        }
+
+        .current-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #a35c16;
+            margin: 15px 0;
+        }
+
+        /* フッター */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #382617;
+            color: #d9c4a2;
+            font-size: 0.9rem;
+        }
+
+        /* スマホ対応 */
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            main {
+                padding: 25px 15px 40px;
+            }
+
+            .tab {
+                font-size: 0.9rem;
+                padding: 14px 2px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>こんにちは！</h1>
+<div class="container">
 
-    <p>これは私が作ったホームページです。</p>
+    <!-- タイトル -->
+    <header>
+        <h1>⛏️ In the 掘～る 💎</h1>
+        <p>掘って、掘って、宝を見つけよう！</p>
+    </header>
 
-    <h2>ゲーム紹介</h2>
+    <!-- タブ -->
+    <nav class="tabs">
+        <a href="#top" class="tab active">Top</a>
+        <a href="#ranking" class="tab">Ranking</a>
+        <a href="#waiting" class="tab">Waiting list</a>
+    </nav>
 
-    <p>ここでは私が制作したゲームを紹介します。</p>
+    <main>
+
+        <!-- Top -->
+        <section id="top">
+
+            <h2>🎮 Game Introduction</h2>
+
+            <!-- 動画 -->
+            <div class="video">
+                <p>
+                    <span class="video-icon">▶</span>
+                    プレイ動画<br>
+                    <small>動画URLが決まり次第ここに表示します</small>
+                </p>
+            </div>
+
+            <!-- ゲーム紹介 -->
+            <h2>⛏️ About the Game</h2>
+
+            <div class="description">
+
+                <p>
+                    <strong>「In the 掘～る」</strong>へようこそ！
+                </p>
+
+                <p>
+                    「In the 掘～る」は、穴（Hole）と「掘る」を
+                    掛け合わせたタイトルのゲームです。
+                </p>
+
+                <p>
+                    ……ゲームの詳しい内容は現在準備中です。
+                </p>
+
+                <p>
+                    <strong>ゲーム紹介文：未定</strong>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Ranking -->
+        <section id="ranking">
+
+            <h2>🏆 Ranking</h2>
+
+            <div class="ranking-item">
+                <span class="rank">🥇 1st　Player A</span>
+                <strong>9,800 pt</strong>
+            </div>
+
+            <div class="ranking-item">
+                <span class="rank">🥈 2nd　Player B</span>
+                <strong>8,500 pt</strong>
+            </div>
+
+            <div class="ranking-item">
+                <span class="rank">🥉 3rd　Player C</span>
+                <strong>7,200 pt</strong>
+            </div>
+
+        </section>
+
+
+        <!-- Waiting list -->
+        <section id="waiting">
+
+            <h2>🎫 Waiting list</h2>
+
+            <div class="waiting">
+
+                <p>現在プレイ中</p>
+
+                <div class="current-number">
+                    No. 7
+                </div>
+
+                <p>
+                    次の方：<strong>No. 8</strong>
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        In the 掘～る
+    </footer>
+
+</div>
 
 </body>
 </html>
