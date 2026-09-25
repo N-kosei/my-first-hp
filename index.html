@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,303 +7,397 @@
     <title>In the 掘～る</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        /* =========================
+           全体
+        ========================= */
 
         body {
             margin: 0;
             font-family: sans-serif;
-            color: #3b2a1a;
-
-            /* 土っぽい背景 */
             background:
-                radial-gradient(circle at 20% 20%, #8b6b4a 0 3%, transparent 4%),
-                radial-gradient(circle at 70% 40%, #6e5138 0 2%, transparent 3%),
-                radial-gradient(circle at 40% 80%, #a17b52 0 3%, transparent 4%),
-                linear-gradient(135deg, #5c432e, #9a744d, #60462f);
-
-            background-size: 180px 180px;
+                radial-gradient(circle at 20% 20%, #8b5a2b 0 8%, transparent 9%),
+                radial-gradient(circle at 80% 70%, #6b4423 0 10%, transparent 11%),
+                linear-gradient(#5b3a29, #3b271c);
+            color: #fff;
             min-height: 100vh;
         }
 
-        /* ページ全体 */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #f3e4c8;
-            min-height: 100vh;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-        }
+        /* =========================
+           ヘッダー
+        ========================= */
 
-        /* ヘッダー */
         header {
             text-align: center;
-            padding: 40px 20px 25px;
-
-            background:
-                linear-gradient(
-                    rgba(70, 45, 25, 0.85),
-                    rgba(70, 45, 25, 0.85)
-                );
-
-            color: #fff4d6;
+            padding: 35px 20px 25px;
+            background: rgba(0, 0, 0, 0.25);
         }
 
         header h1 {
             margin: 0;
-            font-size: 3rem;
-            letter-spacing: 3px;
+            font-size: 2.5rem;
+            color: #ffd966;
+            text-shadow: 3px 3px 0 #4a2c18;
         }
 
         header p {
-            margin: 10px 0 0;
-            color: #e7c98e;
+            margin-top: 10px;
+            font-size: 1.1rem;
         }
 
-        /* タブ */
+        /* =========================
+           タブ
+        ========================= */
+
         .tabs {
             display: flex;
-            background: #382617;
+            justify-content: center;
+            gap: 5px;
+            background: #2c1b12;
+            padding: 10px;
         }
 
-        .tab {
-            flex: 1;
-            padding: 16px 5px;
-            text-align: center;
-            color: #fff;
-            text-decoration: none;
+        .tab-button {
+            border: none;
+            background: #5c4030;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1rem;
             font-weight: bold;
-            border-right: 1px solid #725438;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            transition: 0.2s;
         }
 
-        .tab:hover {
-            background: #6c4b2d;
+        .tab-button:hover {
+            background: #79543a;
         }
 
-        .tab.active {
-            background: #c28a3c;
-            color: #fff8e8;
+        /* 選択中のタブ */
+        .tab-button.active {
+            background: #d9a441;
+            color: #3b271c;
         }
 
-        /* メイン */
+        /* =========================
+           メイン
+        ========================= */
+
         main {
-            padding: 35px 25px 50px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px 50px;
         }
 
-        section {
-            margin-bottom: 40px;
+        /* =========================
+           各ページ
+        ========================= */
+
+        .tab-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        /* 表示するページ */
+        .tab-content.active {
+            display: block;
         }
 
         h2 {
-            border-left: 8px solid #b87825;
-            padding-left: 12px;
-            color: #5a351b;
+            text-align: center;
+            color: #ffd966;
+            margin-top: 0;
+            font-size: 2rem;
         }
 
-        /* 動画 */
-        .video {
+        h3 {
+            color: #ffd966;
+            border-left: 5px solid #d9a441;
+            padding-left: 10px;
+        }
+
+        /* =========================
+           動画
+        ========================= */
+
+        .video-box {
             width: 100%;
             aspect-ratio: 16 / 9;
-            background: #2c2118;
+            background: #24170f;
+            border: 3px dashed #c49a5a;
+            border-radius: 10px;
+
             display: flex;
-            justify-content: center;
             align-items: center;
-            color: #d7c09b;
-            border: 5px solid #68482c;
-            border-radius: 10px;
+            justify-content: center;
+
+            margin: 20px 0;
+            color: #c9b59a;
         }
 
-        .video p {
-            text-align: center;
-        }
+        /* =========================
+           ランキング
+        ========================= */
 
-        .video-icon {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        /* ゲーム紹介 */
-        .description {
-            background: #fff8e9;
-            padding: 25px;
-            border-radius: 10px;
-            border: 2px solid #c9a56c;
-            line-height: 1.8;
-        }
-
-        /* ランキング */
-        .ranking-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 20px;
-            margin: 8px 0;
-            background: #fff8e9;
-            border-radius: 8px;
-            border: 1px solid #c9a56c;
+        .ranking {
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .rank {
-            font-weight: bold;
-        }
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-        /* 整理券 */
-        .waiting {
-            background: #fff8e9;
-            padding: 25px;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 15px 20px;
+            margin: 12px 0;
+
             border-radius: 10px;
-            border: 2px solid #c9a56c;
-            text-align: center;
+            font-size: 1.2rem;
         }
 
-        .current-number {
-            font-size: 2.5rem;
+        .rank-number {
+            font-size: 1.5rem;
             font-weight: bold;
-            color: #a35c16;
-            margin: 15px 0;
         }
 
-        /* フッター */
-        footer {
+        .score {
+            font-weight: bold;
+            color: #ffd966;
+        }
+
+        /* =========================
+           待ち状況
+        ========================= */
+
+        .waiting-box {
             text-align: center;
-            padding: 20px;
-            background: #382617;
-            color: #d9c4a2;
-            font-size: 0.9rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* スマホ対応 */
+        .waiting-label {
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .waiting-number {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ffd966;
+            margin: 10px 0 30px;
+        }
+
+        .next-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* =========================
+           スマホ対応
+        ========================= */
+
         @media (max-width: 600px) {
 
             header h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
 
-            main {
-                padding: 25px 15px 40px;
+            .tabs {
+                gap: 2px;
             }
 
-            .tab {
-                font-size: 0.9rem;
-                padding: 14px 2px;
+            .tab-button {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+
+            .tab-content {
+                padding: 20px 15px;
+            }
+
+            .waiting-number {
+                font-size: 3rem;
             }
         }
     </style>
 </head>
 
+
 <body>
 
-<div class="container">
+    <!-- =========================
+         ヘッダー
+    ========================= -->
 
-    <!-- タイトル -->
     <header>
         <h1>⛏️ In the 掘～る 💎</h1>
         <p>掘って、掘って、宝を見つけよう！</p>
     </header>
 
-    <!-- タブ -->
+
+    <!-- =========================
+         タブ
+    ========================= -->
+
     <nav class="tabs">
-        <a href="#top" class="tab active">Top</a>
-        <a href="#ranking" class="tab">Ranking</a>
-        <a href="#waiting" class="tab">Waiting list</a>
+
+        <button class="tab-button active" onclick="showTab('top', this)">
+            TOP
+        </button>
+
+        <button class="tab-button" onclick="showTab('ranking', this)">
+            Ranking
+        </button>
+
+        <button class="tab-button" onclick="showTab('waiting', this)">
+            Waiting list
+        </button>
+
     </nav>
+
+
+    <!-- =========================
+         メイン
+    ========================= -->
 
     <main>
 
-        <!-- Top -->
-        <section id="top">
 
-            <h2>🎮 Game Introduction</h2>
+        <!-- =========================
+             TOP
+        ========================= -->
 
-            <!-- 動画 -->
-            <div class="video">
-                <p>
-                    <span class="video-icon">▶</span>
-                    プレイ動画<br>
-                    <small>動画URLが決まり次第ここに表示します</small>
-                </p>
-            </div>
+        <section id="top" class="tab-content active">
 
-            <!-- ゲーム紹介 -->
-            <h2>⛏️ About the Game</h2>
+            <h2>⛏️ In the 掘～る</h2>
 
-            <div class="description">
+            <h3>ゲーム紹介</h3>
 
-                <p>
-                    <strong>「In the 掘～る」</strong>へようこそ！
-                </p>
+            <p>
+                「In the 掘～る」は、土を掘って宝を探すゲームです。
+            </p>
 
-                <p>
-                    「In the 掘～る」は、穴（Hole）と「掘る」を
-                    掛け合わせたタイトルのゲームです。
-                </p>
+            <p>
+                どんな宝が見つかるかは掘ってみてのお楽しみ！
+            </p>
 
-                <p>
-                    ……ゲームの詳しい内容は現在準備中です。
-                </p>
 
-                <p>
-                    <strong>ゲーム紹介文：未定</strong>
-                </p>
+            <h3>プレイ動画</h3>
 
+            <div class="video-box">
+                <p>🎥 プレイ動画準備中</p>
             </div>
 
         </section>
 
 
-        <!-- Ranking -->
-        <section id="ranking">
+
+        <!-- =========================
+             Ranking
+        ========================= -->
+
+        <section id="ranking" class="tab-content">
 
             <h2>🏆 Ranking</h2>
 
-            <div class="ranking-item">
-                <span class="rank">🥇 1st　Player A</span>
-                <strong>9,800 pt</strong>
-            </div>
+            <div class="ranking">
 
-            <div class="ranking-item">
-                <span class="rank">🥈 2nd　Player B</span>
-                <strong>8,500 pt</strong>
-            </div>
+                <div class="rank">
+                    <span class="rank-number">🥇 1位</span>
+                    <span class="score">980点</span>
+                </div>
 
-            <div class="ranking-item">
-                <span class="rank">🥉 3rd　Player C</span>
-                <strong>7,200 pt</strong>
+                <div class="rank">
+                    <span class="rank-number">🥈 2位</span>
+                    <span class="score">850点</span>
+                </div>
+
+                <div class="rank">
+                    <span class="rank-number">🥉 3位</span>
+                    <span class="score">720点</span>
+                </div>
+
             </div>
 
         </section>
 
 
-        <!-- Waiting list -->
-        <section id="waiting">
+
+        <!-- =========================
+             Waiting list
+        ========================= -->
+
+        <section id="waiting" class="tab-content">
 
             <h2>🎫 Waiting list</h2>
 
-            <div class="waiting">
+            <div class="waiting-box">
 
-                <p>現在プレイ中</p>
+                <div class="waiting-label">
+                    現在のご案内
+                </div>
 
-                <div class="current-number">
+                <div class="waiting-number">
                     No. 7
                 </div>
 
-                <p>
-                    次の方：<strong>No. 8</strong>
-                </p>
+
+                <div class="waiting-label">
+                    次のご案内
+                </div>
+
+                <div class="next-number">
+                    No. 8
+                </div>
 
             </div>
 
         </section>
+
 
     </main>
 
 
-    <footer>
-        In the 掘～る
-    </footer>
 
-</div>
+    <!-- =========================
+         JavaScript
+    ========================= -->
+
+    <script>
+
+        function showTab(tabId, button) {
+
+            // すべてのページを非表示にする
+            const contents = document.querySelectorAll('.tab-content');
+
+            contents.forEach(function(content) {
+                content.classList.remove('active');
+            });
+
+
+            // 選択されたページを表示する
+            const selectedTab = document.getElementById(tabId);
+
+            selectedTab.classList.add('active');
+
+
+            // すべてのタブから active を削除
+            const buttons = document.querySelectorAll('.tab-button');
+
+            buttons.forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+
+
+            // 押されたタブを active にする
+            button.classList.add('active');
+        }
+
+    </script>
 
 </body>
 </html>
