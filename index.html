@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>In the 掘～る</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
         /* =========================
@@ -342,7 +343,7 @@
                 </div>
 
                 <div class="waiting-number">
-                    No. 7
+                    読み込み中・・・
                 </div>
 
 
@@ -396,6 +397,44 @@
             // 押されたタブを active にする
             button.classList.add('active');
         }
+        const SUPABASE_URL = 'https://okylctjknvtphzufkhnl.supabase.co';
+
+        const SUPABASE_PUBLISHABLE_KEY =
+            'sb_publishable__UirMzB19mwcS1FZg-CHUg_DVJxgjPy';
+
+
+        const supabaseClient = supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
+
+
+        async function loadWaitingNumber() {
+
+            const { data, error } = await supabaseClient
+                .from('waiting_info')
+                .select('waiting_number')
+                .eq('id', 1)
+                .single();
+
+
+            if (error) {
+
+                console.error(error);
+
+                document.getElementById('waiting-number').textContent =
+                    '読み込みエラー';
+
+                return;
+            }
+
+
+            document.getElementById('waiting-number').textContent =
+                'No. ' + data.waiting_number;
+        }
+
+
+        loadWaitingNumber();
 
     </script>
 
